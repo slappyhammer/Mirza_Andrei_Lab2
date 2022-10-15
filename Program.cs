@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Mirza_Andrei_Lab2.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<Mirza_Andrei_Lab2Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Mirza_Andrei_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Mirza_Andrei_Lab2Context' not found.")));
 
 var app = builder.Build();
 
