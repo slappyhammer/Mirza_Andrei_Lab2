@@ -34,3 +34,32 @@
 }
     </tbody>
 </table>
+@if (Model.CategoryData.BookCategories != null)
+{
+    <h3>Books Edited in the Selected Category</h3>
+    <table class="table">
+
+        @foreach (var item in Model.CategoryData.BookCategories)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.CategoryID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+
+                <td>
+                    @{
+                        foreach (var b in item.Book)
+                        {
+
+                            @b.Title @: @b.Author.FullName
+
+                            <br />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
